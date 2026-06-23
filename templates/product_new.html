@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container" style="max-width: 750px; margin: 30px auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); font-family: sans-serif;">
+    <h2 style="color: #2c3e50; margin-top: 0;">+ Tambah Produk & Foto Baru</h2>
+    <hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 20px;">
+    
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <h3 style="color: #2c3e50; font-size: 16px; margin-bottom: 15px; border-left: 4px solid #1abc9c; padding-left: 10px;">Informasi Gitar</h3>
+        <div class="django-form-fields">
+            {{ form.as_p }}
+        </div>
+        
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 30px 0;">
+        
+        <h3 style="color: #2c3e50; font-size: 16px; margin-bottom: 5px; border-left: 4px solid #1abc9c; padding-left: 10px;">Upload Foto Produk (Maksimal 10)</h3>
+        <p style="font-size: 12px; color: #7f8c8d; margin-top: 0; margin-bottom: 15px; padding-left: 14px;">Pilih file gambar untuk setiap slot. Centang kotak "Delete" jika ingin membatalkan atau menghapus foto.</p>
+        
+        {{ image_formset.management_form }}
+        
+        <div class="image-upload-slots" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; background: #f9f9f9; padding: 20px; border-radius: 6px; border: 1px dashed #ccc;">
+            {% for img_form in image_formset %}
+                <div class="slot" style="background: #fff; padding: 12px; border-radius: 4px; border: 1px solid #e0e0e0; font-size: 13px; box-sizing: border-box;">
+                    <span style="font-weight: bold; color: #7f8c8d; display: block; margin-bottom: 8px;">Slot Foto {{ forloop.counter }}</span>
+                    
+                    {{ img_form.id }}
+                    <div style="overflow: hidden;">
+                        {{ img_form.image }}
+                    </div>
+                    
+                    {% if image_formset.can_delete and img_form.instance.pk %}
+                        <div style="margin-top: 8px; color: #c0392b; font-weight: bold;">
+                            {{ img_form.DELETE }} Hapus foto ini
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+        
+        <div style="margin-top: 35px; display: flex; gap: 10px;">
+            <button type="submit" style="background: #1abc9c; color: white; border: none; padding: 12px 25px; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 14px; transition: background 0.2s;"
+                    onmouseover="this.style.background='#16a085'" onmouseout="this.style.background='#1abc9c'">
+                Simpan Produk & Foto
+            </button>
+            <a href="{% url 'home' %}" style="text-decoration: none; background: #e0e0e0; color: #333; padding: 12px 25px; border-radius: 4px; font-weight: bold; font-size: 14px; display: inline-block;">
+                Batal
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock content %}

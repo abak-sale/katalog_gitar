@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Katalog Gitar Dinamis{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+</head>
+<body>
+    <header>
+        <nav style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <a href="{% url 'home' %}" style="color: #fff; text-decoration: none; font-weight: bold; margin-right: 15px;">Home</a>
+                
+                {% if user.is_authenticated %}
+                    <a href="{% url 'product_new' %}" style="color: #fff; text-decoration: none; font-weight: bold;">+ Tambah Produk Gitar</a>
+                {% endif %}
+            </div>
+
+            <div style="color: #fff;">
+                {% if user.is_authenticated %}
+                    <span style="margin-right: 10px;">Halo, <strong>{{ user.username }}</strong>!</span> | 
+                    
+                    <form action="{% url 'logout' %}" method="post" style="display: inline; margin-left: 10px;">
+                        {% csrf_token %}
+                        <button type="submit" style="background: none; border: none; color: #ff7675; font-weight: bold; cursor: pointer; font-family: inherit; font-size: inherit; padding: 0;">
+                            Log Out
+                        </button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}" style="color: #1abc9c; text-decoration: none; font-weight: bold;">Log In</a>
+                {% endif %}
+            </div>
+        </nav>
+        <h1 style="margin-top: 20px; margin-bottom: 0;"><a href="{% url 'home' %}" style="color: white; text-decoration: none;">Abak Sale Toko Gitar Seken - Batam</a></h1>
+    </header>
+
+    <main style="margin-top: 20px;">
+        {% block content %}
+        {% endblock content %}
+    </main>
+</body>
+</html>

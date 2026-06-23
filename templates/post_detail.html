@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="post-entry">
+        <h2>{{ post.title }}</h2>
+        <p>Penulis: <strong>{{ post.author.username }}</strong></p>
+        <p>{{ post.body }}</p>
+    </div>
+    
+    {% if user.is_authenticated %}
+        <p>
+            <a href="{% url 'post_edit' post.pk %}">+ Edit Artikel Ini</a> | 
+            <a href="{% url 'post_delete' post.pk %}" style="color: red;">&times; Hapus Artikel Ini</a>
+        </p>
+    {% endif %}
+    
+    <hr>
+    <p><a href="{% url 'home' %}">&larr; Kembali ke Beranda</a></p>
+{% endblock content %}

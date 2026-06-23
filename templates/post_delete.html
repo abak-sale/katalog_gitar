@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Hapus Artikel</h1>
+    
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>Apakah Anda yakin ingin menghapus artikel yang berjudul <strong>"{{ post.title }}"</strong>?</p>
+        
+        <input type="submit" value="Ya, Hapus Selamanya" style="background-color: red; color: white;">
+    </form>
+    
+    <p><a href="{% url 'post_detail' post.pk %}">Batal</a></p>
+{% endblock content %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Edit Artikel Anda</h1>
+    
+    <form action="" method="post">
+        {% csrf_token %}
+        
+        {{ form.as_p }}
+        
+        <input type="submit" value="Perbarui Artikel">
+    </form>
+    
+    <p><a href="{% url 'post_detail' post.pk %}">Batal</a></p>
+{% endblock content %}

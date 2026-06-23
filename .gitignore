@@ -1,0 +1,17 @@
+# Virtual Environment lokal
+venv/
+.venv/
+env/
+
+# Database lokal (biar di GitHub tetap bersih)
+db.sqlite3
+
+# File sampah Python
+*.pyc
+__pycache__/
+
+# File konfigurasi editor / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
