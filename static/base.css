@@ -289,3 +289,86 @@ input[type="submit"]:hover, .btn:hover {
     /* Jika di HP masih terlalu sempit untuk 2 kolom, gunakan opsi 1 kolom di bawah ini: */
     /* grid-template-columns: 1fr !important; */
 }
+/* ==========================================
+   7. HALAMAN LOGIN (Membuat Form ke Tengah)
+   ========================================== */
+.login-clean-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh; /* Membuat form turun ke tengah layar secara vertikal */
+    padding: 20px;
+}
+
+.login-card {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Efek bayangan halus */
+    width: 100%;
+    max-width: 400px; /* Membatasi lebar kotak login agar pas */
+    border: 1px solid #f0e6d2; /* Border tipis senada warna cream */
+}
+
+.login-card h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-align: center;
+    color: #1a1a1a;
+    letter-spacing: -0.5px;
+}
+
+/* Merapikan susunan input form Django */
+.login-card p {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+}
+
+.login-card input {
+    margin-top: 5px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+.login-card input:focus {
+    border-color: #2c3e50;
+    outline: none;
+}
+
+/* Tombol Login Baru */
+.btn-login-submit {
+    width: 100%;
+    padding: 12px;
+    background: #1a1a1a;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    margin-top: 10px;
+    transition: background 0.2s;
+}
+
+.btn-login-submit:hover {
+    background: #333333;
+}
+
+.login-error-msg {
+    color: #e74c3c;
+    font-size: 13px;
+    text-align: center;
+    margin-bottom: 15px;
+}

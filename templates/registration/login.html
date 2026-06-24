@@ -1,10 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Login ke Akun Anda</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Log In">
-    </form>
+<div class="login-clean-container">
+    <div class="login-card">
+        <h2>Login ke Akun Anda</h2>
+        
+        <form method="post">
+            {% csrf_token %}
+            
+            {% if form.errors %}
+                <p class="login-error-msg">Username atau password yang Anda masukkan salah.</p>
+            {% endif %}
+
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            
+            <button type="submit" class="btn-login-submit">Log In</button>
+        </form>
+    </div>
+</div>
 {% endblock content %}
