@@ -11,7 +11,7 @@
 
     <!-- HEADER UTAMA -->
     <header>
-        <!-- Lapis 2: Main Navigation Bar (Cream lembut) -->
+        <!-- Main Navigation Bar (Cream Lembut) -->
         <div class="main-header">
             <div class="header-container main-header-content">
                 
@@ -34,7 +34,13 @@
                 <div class="nav-right">
                     {% if user.is_authenticated %}
                         <span class="user-greeting">Halo, <strong>{{ user.username }}!</strong></span>
-                        <a href="{% url 'logout' %}" class="logout-link">Log Out</a>
+                        <!-- Form POST untuk Log Out agar aman dan berfungsi di Live Server -->
+                        <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="logout-link" style="background: none; border: none; padding: 0; cursor: pointer; font-family: inherit; font-size: 12px; font-weight: 700; color: #e74c3c; text-transform: uppercase; letter-spacing: 0.5px;">
+                                Log Out
+                            </button>
+                        </form>
                     {% else %}
                         <a href="{% url 'login' %}" class="login-link">Log In / Register</a>
                     {% endif %}
