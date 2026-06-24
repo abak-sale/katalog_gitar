@@ -4,41 +4,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Katalog Gitar Dinamis{% endblock title %}</title>
+    <title>Abak Sale Toko Gitar Seken - Batam</title>
     <link rel="stylesheet" href="{% static 'base.css' %}">
 </head>
 <body>
-    <header>
-        <nav style="display: flex; justify-content: space-between; align-items: center;">
-            <div>
-                <a href="{% url 'home' %}" style="color: #fff; text-decoration: none; font-weight: bold; margin-right: 15px;">Home</a>
-                
-                {% if user.is_authenticated %}
-                    <a href="{% url 'product_new' %}" style="color: #fff; text-decoration: none; font-weight: bold;">+ Tambah Produk Gitar</a>
-                {% endif %}
-            </div>
 
-            <div style="color: #fff;">
-                {% if user.is_authenticated %}
-                    <span style="margin-right: 10px;">Halo, <strong>{{ user.username }}</strong>!</span> | 
-                    
-                    <form action="{% url 'logout' %}" method="post" style="display: inline; margin-left: 10px;">
-                        {% csrf_token %}
-                        <button type="submit" style="background: none; border: none; color: #ff7675; font-weight: bold; cursor: pointer; font-family: inherit; font-size: inherit; padding: 0;">
-                            Log Out
-                        </button>
-                    </form>
-                {% else %}
-                    <a href="{% url 'login' %}" style="color: #1abc9c; text-decoration: none; font-weight: bold;">Log In</a>
-                {% endif %}
+    <!-- HEADER UTAMA -->
+    <header>
+        <!-- Lapis 2: Main Navigation Bar (Cream lembut) -->
+        <div class="main-header">
+            <div class="header-container main-header-content">
+                
+                <!-- Navigasi Kiri: Menu Utama & Fitur Tambah Produk -->
+                <nav class="nav-left">
+                    <a href="{% url 'home' %}">Home</a>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'product_new' %}" class="menu-highlight">+ Tambah Produk Gitar</a>
+                    {% endif %}
+                </nav>
+
+                <!-- Logo Tengah: Abak Sale -->
+                <div class="logo-center">
+                    <span class="logo-est">EST. 13/10/2022</span>
+                    <h1><a href="{% url 'home' %}">Abak Sale</a></h1>
+                    <span class="logo-sub">Toko Gitar Seken - Batam</span>
+                </div>
+
+                <!-- Navigasi Kanan: Status Login / Kontrol Akun -->
+                <div class="nav-right">
+                    {% if user.is_authenticated %}
+                        <span class="user-greeting">Halo, <strong>{{ user.username }}!</strong></span>
+                        <a href="{% url 'logout' %}" class="logout-link">Log Out</a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="login-link">Log In / Register</a>
+                    {% endif %}
+                </div>
+
             </div>
-        </nav>
-        <h1 style="margin-top: 20px; margin-bottom: 0;"><a href="{% url 'home' %}" style="color: white; text-decoration: none;">Abak Sale Toko Gitar Seken - Batam</a></h1>
+        </div>
     </header>
 
-    <main style="margin-top: 20px;">
+    <!-- CONTAINER UTAMA UNTUK KONTEN -->
+    <main class="container">
         {% block content %}
+        <!-- Isi katalog instrumen & produk gitar akan otomatis muncul utuh di sini -->
         {% endblock content %}
     </main>
+
 </body>
 </html>
