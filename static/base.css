@@ -233,3 +233,59 @@ input[type="submit"]:hover, .btn:hover {
     color: #000000;            /* Teks tombol menjadi hitam */
     border: 1px solid #000000;
 }
+/* ==========================================
+   6. RESPONSIVE STYLES (Pengaturan Khusus HP)
+   ========================================== */
+@media screen and (max-width: 768px) {
+    /* --- Penataan Header di HP --- */
+    header .main-header {
+        padding: 15px 0;
+    }
+
+    header .main-header-content {
+        flex-direction: column; /* Membuat susunan menu & logo berbaris ke bawah, bukan ke samping */
+        text-align: center;
+        gap: 15px;
+    }
+
+    .nav-left, .logo-center, .nav-right {
+        flex: none;
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+    }
+
+    .nav-left {
+        order: 2; /* Menu utama pindah ke tengah bawah logo */
+        margin-top: 5px;
+    }
+    
+    .nav-left a {
+        margin: 0 10px; /* Memberi jarak seimbang antar menu */
+    }
+
+    .logo-center {
+        order: 1; /* Logo Abak Sale tetap paling atas */
+    }
+
+    .logo-center h1 {
+        font-size: 24px; /* Sedikit memperkecil ukuran logo di HP agar pas */
+    }
+
+    .nav-right {
+        order: 3; /* Status login pindah ke paling bawah header */
+        align-items: center;
+    }
+
+    /* --- Penataan Katalog / Grid Produk di HP --- */
+    /* Cari class pembungkus daftar produk kamu, biasanya menggunakan grid atau flex */
+    .product-grid, .post-entry-wrapper { 
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important; /* Mengubah kolom produk menjadi 2 kolom di HP agar gambar tidak gepeng/sempit */
+        gap: 15px !important;
+    }
+
+    /* Jika di HP masih terlalu sempit untuk 2 kolom, gunakan opsi 1 kolom di bawah ini: */
+    /* grid-template-columns: 1fr !important; */
+}
