@@ -1,5 +1,16 @@
 from django import forms
-from .models import Product
+from .models import Product, Category
+
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ['name']
+        widgets = {
+            'name': forms.TextInput(attrs={
+                'style': 'width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 4px; border: 1px solid #ccc; font-size: 14px;', 
+                'placeholder': 'Masukkan nama kategori baru (misal: Efek Gitar)...'
+            }),
+        }
 
 class ProductForm(forms.ModelForm):
     class Meta:

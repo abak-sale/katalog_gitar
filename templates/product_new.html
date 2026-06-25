@@ -8,7 +8,16 @@
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         
+        <!-- BAGIAN SUB-JUDUL INFORMASI GITAR -->
         <h3 style="color: #2c3e50; font-size: 16px; margin-bottom: 15px; border-left: 4px solid #1abc9c; padding-left: 10px;">Informasi Gitar</h3>
+        
+        <!-- LANGKAH 5: TOMBOL AKSES CEPAT TAMBAH KATEGORI BARU -->
+        <div style="margin-bottom: 10px; text-align: right;">
+            <a href="{% url 'category_new' %}" style="font-size: 13px; color: #e67e22; font-weight: 700; text-decoration: none; display: inline-block; padding: 2px 5px; border: 1px dashed #e67e22; border-radius: 4px; background-color: #fffaf5;">
+                + Tambah Kategori Baru
+            </a>
+        </div>
+
         <div class="django-form-fields">
             {{ form.as_p }}
         </div>

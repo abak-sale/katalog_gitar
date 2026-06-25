@@ -5,7 +5,7 @@ from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin 
 from django.forms import inlineformset_factory # <-- Ditambahkan untuk handle FormSet Gambar
 from .models import Category, Product, ProductImage # <-- Pastikan ProductImage diimpor di sini
-from .forms import ProductForm
+from .forms import ProductForm,CategoryForm
 
 # =========================================================================
 # KONFIGURASI FORMSET: Digunakan bersama oleh halaman Tambah & Edit
@@ -138,3 +138,15 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
     template_name = "product_delete.html"
     success_url = reverse_lazy("home")
     login_url = "login"
+    
+# =========================================================================
+# 6. HALAMAN TAMBAH KATEGORI BARU (Locked)
+# =========================================================================
+class CategoryCreateView(LoginRequiredMixin, CreateView):
+    model = Category
+    form_class = CategoryForm
+    template_name = "category_new.html"
+    success_url = reverse_lazy("product_new") # Setelah sukses simpan, otomatis balik ke halaman input produk
+    login_url = "login"
+    
+    
