@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="login-clean-container">
+    <div class="login-card">
+        <h2 style="color: #c0392b;">Hapus Kategori?</h2>
+        <p style="text-align: center; font-size: 14px; color: #555; margin-bottom: 20px;">
+            Apakah Anda yakin ingin menghapus kategori <strong>"{{ object.name }}"</strong>?<br>
+            <span style="color: #e74c3c; font-size: 12px;">(Peringatan: Semua produk di dalam kategori ini juga akan ikut terhapus!)</span>
+        </p>
+        
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn-login-submit" style="background: #c0392b;">Ya, Hapus Permanen</button>
+        </form>
+        
+        <a href="{% url 'product_new' %}" style="display:block; text-align:center; margin-top:15px; font-size:13px; color:#555; text-decoration:none;">
+            ← Batal
+        </a>
+    </div>
+</div>
+{% endblock content %}

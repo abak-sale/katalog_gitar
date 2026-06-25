@@ -1,23 +1,38 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="login-clean-container">
+<div class="login-clean-container" style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
+    
     <div class="login-card">
         <h2>Tambah Kategori Baru</h2>
-        
         <form method="post">
             {% csrf_token %}
-            
             <div class="form-group">
                 {{ form.as_p }}
             </div>
-            
             <button type="submit" class="btn-login-submit">Simpan Kategori</button>
         </form>
-        
         <a href="{% url 'product_new' %}" style="display:block; text-align:center; margin-top:15px; font-size:13px; color:#555; text-decoration:none;">
             ← Kembali ke Tambah Produk
         </a>
     </div>
+
+    <div class="login-card" style="margin-top: 0;">
+        <h3 style="font-size: 16px; margin-bottom: 15px; border-left: 4px solid #e67e22; padding-left: 10px; color: #2c3e50;">Daftar Kategori Saat Ini</h3>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+            {% for cat in view.get_context_data.categories_list %}
+                <li style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #eee; font-size: 14px;">
+                    <span>{{ cat.name }}</span>
+                    <div style="display: flex; gap: 10px;">
+                        <a href="{% url 'category_edit' cat.pk %}" style="color: #2980b9; text-decoration: none; font-weight: bold; font-size: 12px;">Edit</a>
+                        <a href="{% url 'category_delete' cat.pk %}" style="color: #c0392b; text-decoration: none; font-weight: bold; font-size: 12px;">Hapus</a>
+                    </div>
+                </li>
+            {% empty %}
+                <li style="color: #7f8c8d; font-size: 13px; text-align: center;">Belum ada kategori.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
 </div>
 {% endblock content %}

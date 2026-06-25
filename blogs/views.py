@@ -149,4 +149,29 @@ class CategoryCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy("product_new") # Setelah sukses simpan, otomatis balik ke halaman input produk
     login_url = "login"
     
+    # TAMBAHKAN FUNGSI INI:
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories_list'] = Category.objects.all() # Mengambil semua list kategori untuk ditampilkan di bawah form
+        return context
+    
+# =========================================================================
+# 7. HALAMAN EDIT KATEGORI (Locked)
+# =========================================================================
+class CategoryUpdateView(LoginRequiredMixin, UpdateView):
+    model = Category
+    form_class = CategoryForm
+    template_name = "category_edit.html"
+    success_url = reverse_lazy("product_new") # Setelah diedit, balik ke halaman tambah produk
+    login_url = "login"
+
+# =========================================================================
+# 8. HALAMAN HAPUS KATEGORI (Locked)
+# =========================================================================
+class CategoryDeleteView(LoginRequiredMixin, DeleteView):
+    model = Category
+    template_name = "category_delete.html"
+    success_url = reverse_lazy("product_new")
+    login_url = "login"
+    
     

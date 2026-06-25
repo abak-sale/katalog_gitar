@@ -5,7 +5,9 @@ from .views import (
     ProductCreateView,
     ProductUpdateView, # <-- Impor ini
     ProductDeleteView,  # <-- Impor ini
-    CategoryCreateView # <-- Impor class baru ini
+    CategoryCreateView,# <-- Impor class baru ini
+    CategoryUpdateView, # <-- Impor ini
+    CategoryDeleteView
 )
 
 urlpatterns = [
@@ -18,4 +20,7 @@ urlpatterns = [
     path("product/<int:pk>/delete/", ProductDeleteView.as_view(), name="product_delete"),
     # PATH BARU: Akses tambah kategori halaman web
     path("category/new/", CategoryCreateView.as_view(), name="category_new"),
+    # PATH BARU UNTUK EDIT & HAPUS KATEGORI (Menggunakan ID Kategori / <int:pk>)
+    path("category/<int:pk>/edit/", CategoryUpdateView.as_view(), name="category_edit"),
+    path("category/<int:pk>/delete/", CategoryDeleteView.as_view(), name="category_delete"),
 ]
