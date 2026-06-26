@@ -6,10 +6,12 @@ from django.conf.urls.static import static # <-- Impor helper untuk file statis/
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # 1. Jalur kustom untuk Sign Up buatan kita:
+    path("accounts/", include("accounts.urls")), 
+    # 2. Jalur bawaan Django untuk Login/Logout:
     path("accounts/", include("django.contrib.auth.urls")),
     path("", include("blogs.urls")),
 ]
-
 # Tambahkan baris ini di bawah URLpatterns utama:
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
